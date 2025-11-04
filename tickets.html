@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>INFIERNO FESTIVAL - Entradas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="https://kit.fontawesome.com/c3fd22b8e3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="logo-composite">
+            <img src="https://ik.imagekit.io/k7xdtotaj/logo-festival.png?updatedAt=1762293596406" alt="Logo Infierno Festival" class="logo-main">
+        </div>
+        
+        <nav id="menu">
+            <span class="menu-toggle fas fa-bars"></span> 
+            <span class="close-menu-toggle fas fa-times"></span>
+            
+            <ul>
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="#artistas" class="nav-link">Artistas</a></li>
+                <li><a href="#info" class="nav-link">Info</a></li>
+                <li><a href="#entradas" class="nav-link cta-nav">Entradas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="tickets-page">
+        <section id="entradas" class="content-section">
+            <h2 class="section-title">Consigue tus entradas</h2>
+            <div class="grid-layout">
+                
+                <article class="ticket-type transform-translate-hover" onclick="abrirFormulario('General')">
+                    <h3>ABONO GENERAL</h3>
+                    <p class="price-tag">85€</p>
+                    <p class="description">Acceso 2 días, todas las zonas generales.</p>
+                </article>
+
+                <article class="ticket-type transform-translate-hover" onclick="abrirFormulario('VIP')">
+                    <h3>ABONO VIP</h3>
+                    <p class="price-tag">150€</p>
+                    <p class="description">Acceso VIP 2 días y entrada prioritaria.</p>
+                </article>
+
+                <article class="ticket-type transform-translate-hover" onclick="abrirFormulario('Dia')">
+                    <h3>ENTRADA DÍA</h3>
+                    <p class="price-tag">45€</p>
+                    <p class="description">Acceso para un único día del festival.</p>
+                </article>
+            </div>
+
+        </section>
+
+    </main>
+    
+    <div id="form-modal" class="modal"> 
+        <div class="modal-content form-modal-content">
+            <span class="close-button-form" onclick="cerrarFormulario()">&times;</span>
+            <h2 class="section-title">COMPRAR ENTRADAS</h2>
+            
+            <form id="purchase-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" required>
+                </div>
+                <div class="form-group">
+                    <label for="abono">Tipo de Abono</label>
+                    <select id="abono" onchange="costeTotal()" required>
+                        <option value="General" data-price="85">Abono General (85€)</option>
+                        <option value="VIP" data-price="150">Abono VIP (150€)</option>
+                        <option value="Dia" data-price="45">Entrada de Día (45€)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="numero">Número de Entradas (Máx. 6)</label>
+                    <input type="number" id="numero" min="1" max="6" value="1" onchange="costeTotal()" required>
+                </div>
+                
+                <p class="total-cost-display">TOTAL A PAGAR: <span id="coste">85€</span></p>
+
+                <input type="submit" value="FINALIZAR COMPRA" class="cta-button">
+            </form>
+        </div>
+    </div>
+    
+    <div id="compra-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button-compra" onclick="cerrarVentanaCompra()">&times;</span>
+            <h2 class="modal-success">¡Compra Confirmada!</h2>
+            <p style="margin-bottom: 15px;">Gracias por tu compra. Te hemos enviado un correo con los detalles.</p>
+            
+            <p style="font-weight: 700;">RESUMEN DE LA COMPRA:</p>
+            <ul>
+                <li>Nombre: <strong><span id="n"></span></strong></li>
+                <li>Correo: <strong><span id="c"></span></strong></li>
+                <li>Abono: <strong><span id="a"></span></strong></li>
+                <li>Entradas: <strong><span id="nu"></span></strong></li>
+                <li style="margin-top: 10px; font-size: 1.1em;">Coste Total: <strong><span id="ct"></span></strong></li>
+            </ul>
+            <button class="cta-button" style="margin-top: 25px; border-color: var(--color-neon); color: var(--color-neon);" onclick="cerrarVentanaCompra()">Aceptar</button>
+        </div>
+    </div>
+    <footer>
+        <section class="sponsors-footer">
+            <h4>PATROCINADO POR</h4>
+            <div class="sponsor-logos">
+                <img src="https://ik.imagekit.io/k7xdtotaj/sponsor-logo.png?updatedAt=1762293596200" alt="tattoox" class="sponsor-logo">
+                <img src="https://ik.imagekit.io/k7xdtotaj/sponsor-logo2.png?updatedAt=1762293596231" alt="jagger" class="sponsor-logo">
+                <img src="https://ik.imagekit.io/k7xdtotaj/sponsor-logo3.png?updatedAt=1762293596250" alt="negrita" class="sponsor-logo">
+            </div>
+        </section>
+        
+        <div class="footer-links">
+            <p>© 2025 INFIERNO FESTIVAL S.L.</p>
+            <a href="#" id="modal-trigger" class="footer-link">Aviso Legal</a>
+        </div>
+
+    </footer>
+
+    <div id="aviso-legal-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>AVISO LEGAL</h3>
+            <p>Infierno Festival S.L. NIF: B09850413. C/ Naranjo, Salobreña. Email: infierno@lavendicion.com.</p>
+            <p>El acceso al recinto implica la aceptación de las condiciones de edad y seguridad.</p>
+        </div>
+    </div>
+
+    <script src="js/tickets.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
